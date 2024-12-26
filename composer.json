@@ -1,18 +1,15 @@
 {
     "name": "abdelrhmankhodary/cybersec-utils-01",
-    "description": "The CyberSec Utility Library is a lightweight and powerful PHP library designed to simplify the implementation of essential cybersecurity practices in web applications. This library provides tools for encryption, hashing, input validation, authentication tokens, and more, helping developers secure their applications with minimal effort.",
-    "type": "library",
-    "license": "MIT",
+    "description": "A PHP library for essential cybersecurity utilities.",
     "autoload": {
-        "psr-4": {
-            "Abdelrhmankhodary\\CybersecUtils01\\": "src/"
-        }
+      "psr-4": {
+        "CyberSec\\": "src/"
+      }
     },
-    "authors": [
-        {
-            "name": "abdelrhman-khodary"
-        }
-    ],
-    "minimum-stability": "stable",
-    "require": {}
-}
+    "require": {
+      "php": "^7.4|^8.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+  }
+  
