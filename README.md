@@ -1,26 +1,131 @@
-# CyberSec Utility Library
+CyberSec-Utils Library
 
-## Description
-A PHP library for essential cybersecurity utilities, including encryption, hashing, input validation, and token management.
+Overview
 
-## Features
-- Symmetric encryption (AES-256).
-- Password hashing and verification.
-- Input sanitization and validation.
-- JWT token generation and decoding.
+CyberSec-Utils is a PHP library providing utilities for cybersecurity-related operations such as encryption, hashing, token generation, and input validation. It is designed to simplify the implementation of secure and reliable functionality in PHP projects.
 
-## Usage
+Features
 
-### Encryption
-```php
-require 'vendor/autoload.php';
+Encryption
+
+Symmetric encryption using AES-256.
+
+Hashing
+
+Secure password hashing using password_hash.
+
+Token Generation
+
+JSON Web Token (JWT) generation and validation.
+
+Validation
+
+Input validation and sanitization for common use cases.
+
+Requirements
+
+PHP 8.0 or higher
+
+OpenSSL extension (for encryption)
+
+Installation
+
+Using Composer (Recommended)
+
+Add the library to your project:
+
+composer require your-namespace/cybersec-utils
+
+Include the Composer autoload file in your project:
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+Manual Installation
+
+Clone the repository:
+
+git clone https://github.com/your-repo/cybersec-utils.git
+
+Include the library files manually:
+
+require_once __DIR__ . '/src/Encryption/Symmetric.php';
+require_once __DIR__ . '/src/Hashing/Password.php';
+require_once __DIR__ . '/src/Tokens/JWT.php';
+require_once __DIR__ . '/src/Validation/Validation.php';
+
+Usage Examples
+
+Encryption
+
 use CyberSec\Encryption\Symmetric;
 
-$key = 'securekey1234567';
-$data = 'Hello World';
+$key = 'your-secret-key';
+$data = 'Sensitive data';
 
 $encrypted = Symmetric::encrypt($data, $key);
-echo $encrypted;
-
 $decrypted = Symmetric::decrypt($encrypted, $key);
-echo $decrypted;
+
+echo $decrypted; // Outputs: Sensitive data
+
+Password Hashing
+
+use CyberSec\Hashing\Password;
+
+$password = 'secure-password';
+$hashedPassword = Password::hash($password);
+
+if (Password::verify($password, $hashedPassword)) {
+    echo 'Password is valid';
+}
+
+JSON Web Tokens (JWT)
+
+use CyberSec\Tokens\JWT;
+
+$payload = ['user_id' => 123, 'role' => 'admin'];
+$key = 'your-secret-key';
+
+$token = JWT::generate($payload, $key);
+$decoded = JWT::validate($token, $key);
+
+print_r($decoded);
+
+Input Validation
+
+use CyberSec\Validation\Validation;
+
+$email = 'test@example.com';
+if (Validation::validateEmail($email)) {
+    echo 'Valid email';
+}
+
+$sanitizedString = Validation::sanitizeString("Hello <script>alert('hi');</script>");
+echo $sanitizedString; // Outputs: Hello
+
+Running Tests
+
+To run unit tests:
+
+Ensure PHPUnit is installed via Composer.
+
+Execute the tests:
+
+./vendor/bin/phpunit
+
+Contributing
+
+Fork the repository.
+
+Create a new feature branch:
+
+git checkout -b feature-name
+
+Commit your changes and push to the branch:
+
+git push origin feature-name
+
+Create a pull request.
+
+License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
